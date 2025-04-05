@@ -19,7 +19,7 @@
 
 ## 部署到GitHub Pages
 
-本项目已配置为可直接部署到GitHub Pages，访问地址：https://[您的用户名].github.io/ai-info-hub/
+本项目已配置为可直接部署到GitHub Pages，访问地址：https://moumou-eleven.github.io/ai-info-hub/
 
 ## 数据更新
 
@@ -135,8 +135,7 @@ ai-info-hub/
 
 ## 联系方式
 
-- 邮箱: contact@aiinfohub.com
-- 网站: https://aiinfohub.com
+- 邮箱: yangjianwei12131@163.com
 
 ---
 
