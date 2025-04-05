@@ -404,6 +404,103 @@
         margin: 0.5rem 0;
       }
     }
+    
+    /* 新增的分类导航样式 */
+    .categories-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .category-btn {
+      border: none;
+      background-color: var(--gray-100);
+      color: var(--gray-700);
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .category-btn:hover {
+      background-color: var(--gray-200);
+    }
+    
+    .category-btn.active {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .category-section {
+      margin-bottom: 2rem;
+    }
+    
+    .category-section h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gray-100);
+      color: var(--gray-800);
+    }
+    
+    .models-container .grid {
+      margin-bottom: 2rem;
+    }
+    
+    /* 新增的资讯页面样式 */
+    .news-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .news-filter-btn {
+      border: none;
+      background-color: var(--gray-100);
+      color: var(--gray-700);
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .news-filter-btn:hover {
+      background-color: var(--gray-200);
+    }
+    
+    .news-filter-btn.active {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .news-source-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      background-color: #f0f9ff;
+      color: var(--primary);
+      border-radius: 0.25rem;
+      margin-right: 0.5rem;
+    }
+    
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .categories-nav {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 0.75rem;
+      }
+      
+      /* ... existing media queries ... */
+    }
   </style>
 </head>
 <body>
@@ -412,9 +509,9 @@
       <div class="logo">AI信息中心</div>
       <nav>
         <ul>
-          <li><a href="#" class="active">首页</a></li>
-          <li><a href="#models">AI模型库</a></li>
-          <li><a href="#news">AI资讯</a></li>
+          <li><a href="index.html" class="active">首页</a></li>
+          <li><a href="models.html">AI模型库</a></li>
+          <li><a href="news.html">AI资讯</a></li>
           <li><a href="timeline.html">AI发展时间线</a></li>
         </ul>
       </nav>
@@ -426,97 +523,416 @@
       <h1>探索AI领域最新动态</h1>
       <p>为AI初学者和爱好者提供全面的人工智能模型信息和前沿资讯，助力你了解和应用最新AI技术。</p>
       <div>
-        <a href="#models" class="btn">浏览模型库</a>
-        <a href="#news" class="btn btn-secondary">查看最新资讯</a>
+        <a href="models.html" class="btn">浏览模型库</a>
+        <a href="news.html" class="btn btn-secondary">查看最新资讯</a>
       </div>
     </section>
     
     <section id="models" class="models-section">
       <div class="section-title">
-        <h2>最新AI模型</h2>
-        <a href="#models">查看全部 →</a>
+        <h2>AI模型库</h2>
+        <a href="models.html">查看全部 →</a>
       </div>
       
-      <div class="grid">
-        <div class="card">
-          <div class="card-image">GPT</div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">GPT-4o</h3>
-              <span class="badge">LLM</span>
+      <div class="categories-nav">
+        <button class="category-btn active" data-category="all">全部</button>
+        <button class="category-btn" data-category="llm-global">LLM(全球)</button>
+        <button class="category-btn" data-category="llm-china">LLM(中国)</button>
+        <button class="category-btn" data-category="image">图像生成</button>
+        <button class="category-btn" data-category="video">视频生成</button>
+        <button class="category-btn" data-category="audio">音频处理</button>
+        <button class="category-btn" data-category="search">AI搜索</button>
+        <button class="category-btn" data-category="agent">AI助手</button>
+        <button class="category-btn" data-category="3d">3D创作</button>
+      </div>
+      
+      <div class="models-container">
+        <!-- LLM全球分类 -->
+        <div class="category-section" id="llm-global">
+          <h3>LLM(全球)</h3>
+          <div class="grid">
+            <div class="card">
+              <div class="card-image">GPT</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">GPT-4o</h3>
+                  <span class="badge">LLM</span>
+                </div>
+                <div class="card-company">OpenAI</div>
+                <p class="card-desc">GPT-4o是OpenAI最新的多模态大模型，相比GPT-4更快、更便宜、在视觉和推理能力上有显著提升。</p>
+                <div class="card-tags">
+                  <span class="tag">文本生成</span>
+                  <span class="tag">代码生成</span>
+                  <span class="tag">多模态理解</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 3天前</div>
+                  <a href="https://openai.com/gpt-4o" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
             </div>
-            <div class="card-company">OpenAI</div>
-            <p class="card-desc">GPT-4o是OpenAI最新的多模态大模型，相比GPT-4更快、更便宜、在视觉和推理能力上有显著提升。</p>
-            <div class="card-tags">
-              <span class="tag">文本生成</span>
-              <span class="tag">代码生成</span>
-              <span class="tag">多模态理解</span>
+            
+            <div class="card">
+              <div class="card-image">GEM</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">Gemini Pro</h3>
+                  <span class="badge">LLM</span>
+                </div>
+                <div class="card-company">Google</div>
+                <p class="card-desc">Google的多模态大语言模型，支持文本、图像和代码处理，具有优秀的推理能力和创造性思维。</p>
+                <div class="card-tags">
+                  <span class="tag">多模态</span>
+                  <span class="tag">代码生成</span>
+                  <span class="tag">问答</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 2周前</div>
+                  <a href="https://gemini.google.com/" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
             </div>
-            <div class="card-footer">
-              <div class="card-date">更新于 3天前</div>
-              <a href="https://openai.com/gpt-4o" target="_blank" class="card-link">访问官网</a>
+            
+            <div class="card">
+              <div class="card-image">CLA</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">Claude 3 Opus</h3>
+                  <span class="badge">LLM</span>
+                </div>
+                <div class="card-company">Anthropic</div>
+                <p class="card-desc">Claude 3系列中性能最强的模型，在复杂推理、专业领域问答和多模态任务方面表现卓越。</p>
+                <div class="card-tags">
+                  <span class="tag">文本生成</span>
+                  <span class="tag">推理能力</span>
+                  <span class="tag">多模态理解</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 1个月前</div>
+                  <a href="https://www.anthropic.com/claude" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card">
+              <div class="card-image">MST</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">Mistral Large</h3>
+                  <span class="badge">LLM</span>
+                </div>
+                <div class="card-company">Mistral AI</div>
+                <p class="card-desc">Mistral AI推出的最强大模型，在推理、数学和代码生成上表现优异，模型经过了严格的安全对齐。</p>
+                <div class="card-tags">
+                  <span class="tag">文本生成</span>
+                  <span class="tag">代码生成</span>
+                  <span class="tag">多语言支持</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 3周前</div>
+                  <a href="https://mistral.ai/" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         
-        <div class="card">
-          <div class="card-image">GLM</div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Auto-GLM沉思</h3>
-              <span class="badge">LLM</span>
+        <!-- LLM中国分类 -->
+        <div class="category-section" id="llm-china">
+          <h3>LLM(中国)</h3>
+          <div class="grid">
+            <div class="card">
+              <div class="card-image">GLM</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">Auto-GLM沉思</h3>
+                  <span class="badge">LLM</span>
+                </div>
+                <div class="card-company">智谱AI</div>
+                <p class="card-desc">Auto-GLM沉思是智谱AI推出的自主思考大模型，通过"思考力"提升AI的认知水平，减少推理谬误、幻觉等问题。</p>
+                <div class="card-tags">
+                  <span class="tag">文本生成</span>
+                  <span class="tag">推理能力</span>
+                  <span class="tag">知识整合</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 1周前</div>
+                  <a href="https://www.zhipuai.cn/product/auto-glm" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
             </div>
-            <div class="card-company">智谱AI</div>
-            <p class="card-desc">Auto-GLM沉思是智谱AI推出的自主思考大模型，通过"思考力"提升AI的认知水平，减少推理谬误、幻觉等问题。</p>
-            <div class="card-tags">
-              <span class="tag">文本生成</span>
-              <span class="tag">推理能力</span>
-              <span class="tag">知识整合</span>
+            
+            <div class="card">
+              <div class="card-image">ERN</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">文心一言</h3>
+                  <span class="badge">LLM</span>
+                </div>
+                <div class="card-company">百度</div>
+                <p class="card-desc">百度自研的知识增强大语言模型，拥有海量中文语料和知识库，具备强大的对话、创作和推理能力。</p>
+                <div class="card-tags">
+                  <span class="tag">文本生成</span>
+                  <span class="tag">知识问答</span>
+                  <span class="tag">中文优化</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 2周前</div>
+                  <a href="https://yiyan.baidu.com/" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
             </div>
-            <div class="card-footer">
-              <div class="card-date">更新于 1天前</div>
-              <a href="https://www.zhipuai.cn/product/auto-glm" target="_blank" class="card-link">访问官网</a>
+            
+            <div class="card">
+              <div class="card-image">TYQ</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">通义千问</h3>
+                  <span class="badge">LLM</span>
+                </div>
+                <div class="card-company">阿里巴巴</div>
+                <p class="card-desc">阿里达摩院研发的大语言模型，具备优秀的中文理解和生成能力，可应用于多种业务场景。</p>
+                <div class="card-tags">
+                  <span class="tag">文本生成</span>
+                  <span class="tag">多模态</span>
+                  <span class="tag">内容创作</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 2周前</div>
+                  <a href="https://qianwen.aliyun.com/" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card">
+              <div class="card-image">KMI</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">Kimi</h3>
+                  <span class="badge">LLM</span>
+                </div>
+                <div class="card-company">月之暗面</div>
+                <p class="card-desc">Kimi是月之暗面推出的中文大语言模型，具有强大的长文本理解能力，支持复杂推理和数学解题。</p>
+                <div class="card-tags">
+                  <span class="tag">文本生成</span>
+                  <span class="tag">长文本理解</span>
+                  <span class="tag">数学推理</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 1个月前</div>
+                  <a href="https://kimi.moonshot.cn/" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         
-        <div class="card">
-          <div class="card-image">MAN</div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Manus</h3>
-              <span class="badge">Agent</span>
+        <!-- 图像生成分类 -->
+        <div class="category-section" id="image">
+          <h3>图像生成</h3>
+          <div class="grid">
+            <div class="card">
+              <div class="card-image">MJY</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">Midjourney V7</h3>
+                  <span class="badge">图像</span>
+                </div>
+                <div class="card-company">Midjourney</div>
+                <p class="card-desc">Midjourney V7是目前最先进的文本到图像生成工具之一，能创建超写实、艺术化的图像，支持多种风格和场景。</p>
+                <div class="card-tags">
+                  <span class="tag">文本生成图像</span>
+                  <span class="tag">高质量渲染</span>
+                  <span class="tag">多样风格</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 1周前</div>
+                  <a href="https://www.midjourney.com/" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
             </div>
-            <div class="card-company">腾讯</div>
-            <p class="card-desc">Manus是腾讯推出的通用Agent大模型，具备强大的工具使用能力，可以处理复杂任务和多轮对话。</p>
-            <div class="card-tags">
-              <span class="tag">Agent能力</span>
-              <span class="tag">推理能力</span>
-              <span class="tag">多模态理解</span>
+            
+            <div class="card">
+              <div class="card-image">DAE</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">DALL-E 3</h3>
+                  <span class="badge">图像</span>
+                </div>
+                <div class="card-company">OpenAI</div>
+                <p class="card-desc">OpenAI的最新图像生成模型，能够将文本描述转化为高度准确、细节丰富的图像，支持多语言提示。</p>
+                <div class="card-tags">
+                  <span class="tag">文本生成图像</span>
+                  <span class="tag">创意设计</span>
+                  <span class="tag">精确描述</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 4个月前</div>
+                  <a href="https://openai.com/dall-e-3" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
             </div>
-            <div class="card-footer">
-              <div class="card-date">更新于 1天前</div>
-              <a href="https://cloud.tencent.com/product/hunyuan" target="_blank" class="card-link">访问官网</a>
+            
+            <div class="card">
+              <div class="card-image">STD</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">Stable Diffusion 3</h3>
+                  <span class="badge">图像</span>
+                </div>
+                <div class="card-company">Stability AI</div>
+                <p class="card-desc">Stable Diffusion 3是开源图像生成模型的最新版本，提供更高的图像质量、更好的提示理解能力和更多的控制选项。</p>
+                <div class="card-tags">
+                  <span class="tag">开源</span>
+                  <span class="tag">本地部署</span>
+                  <span class="tag">高度可定制</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 2个月前</div>
+                  <a href="https://stability.ai/" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card">
+              <div class="card-image">LEN</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">Leonardo.AI</h3>
+                  <span class="badge">图像</span>
+                </div>
+                <div class="card-company">Leonardo</div>
+                <p class="card-desc">专为设计师和创意行业打造的AI图像生成平台，提供高度可自定义的工作流和游戏美术资源生成功能。</p>
+                <div class="card-tags">
+                  <span class="tag">游戏美术</span>
+                  <span class="tag">商业设计</span>
+                  <span class="tag">3D资产</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 1个月前</div>
+                  <a href="https://leonardo.ai/" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         
-        <div class="card">
-          <div class="card-image">SOR</div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Sora</h3>
-              <span class="badge">AI视频</span>
+        <!-- 视频生成分类 -->
+        <div class="category-section" id="video">
+          <h3>视频生成</h3>
+          <div class="grid">
+            <div class="card">
+              <div class="card-image">SOR</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">Sora</h3>
+                  <span class="badge">AI视频</span>
+                </div>
+                <div class="card-company">OpenAI</div>
+                <p class="card-desc">Sora是OpenAI的文本生成视频模型，可以生成长达一分钟的高质量、物理合理的视频，遵循用户的文本提示。</p>
+                <div class="card-tags">
+                  <span class="tag">视频生成</span>
+                  <span class="tag">高精度物理</span>
+                  <span class="tag">长视频支持</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 2个月前</div>
+                  <a href="https://openai.com/sora" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
             </div>
-            <div class="card-company">OpenAI</div>
-            <p class="card-desc">Sora是OpenAI的文本生成视频模型，可以生成长达一分钟的高质量、物理合理的视频，遵循用户的文本提示。</p>
-            <div class="card-tags">
-              <span class="tag">视频生成</span>
+            
+            <div class="card">
+              <div class="card-image">RWY</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">Runway Gen-3</h3>
+                  <span class="badge">AI视频</span>
+                </div>
+                <div class="card-company">Runway</div>
+                <p class="card-desc">Runway Gen-3模型支持文本到视频、图像到视频、视频到视频等多种转换功能，为创意专业人士提供强大的视频创作工具。</p>
+                <div class="card-tags">
+                  <span class="tag">视频编辑</span>
+                  <span class="tag">视觉特效</span>
+                  <span class="tag">专业创作</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 3个月前</div>
+                  <a href="https://runway.ml/" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
             </div>
-            <div class="card-footer">
-              <div class="card-date">更新于 2个月前</div>
-              <a href="https://openai.com/sora" target="_blank" class="card-link">访问官网</a>
+            
+            <div class="card">
+              <div class="card-image">PIK</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">Pika</h3>
+                  <span class="badge">AI视频</span>
+                </div>
+                <div class="card-company">Pika Labs</div>
+                <p class="card-desc">Pika是一款直观易用的AI视频生成工具，通过简单的文本描述即可创建短视频，并支持风格转换和视频延展。</p>
+                <div class="card-tags">
+                  <span class="tag">文本到视频</span>
+                  <span class="tag">动画制作</span>
+                  <span class="tag">风格转换</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 1个月前</div>
+                  <a href="https://pika.art/" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
             </div>
+            
+            <div class="card">
+              <div class="card-image">KBR</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">Kaiber</h3>
+                  <span class="badge">AI视频</span>
+                </div>
+                <div class="card-company">Kaiber</div>
+                <p class="card-desc">Kaiber是一个AI视频创作平台，专注于艺术风格化视频生成，能将静态图像转换为流畅的动画和视频内容。</p>
+                <div class="card-tags">
+                  <span class="tag">艺术风格</span>
+                  <span class="tag">图像动画化</span>
+                  <span class="tag">音乐视频</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 2周前</div>
+                  <a href="https://kaiber.ai/" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Agent分类 -->
+        <div class="category-section" id="agent">
+          <h3>AI助手</h3>
+          <div class="grid">
+            <div class="card">
+              <div class="card-image">MAN</div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="card-title">Manus</h3>
+                  <span class="badge">Agent</span>
+                </div>
+                <div class="card-company">腾讯</div>
+                <p class="card-desc">Manus是腾讯推出的通用Agent大模型，具备强大的工具使用能力，可以处理复杂任务和多轮对话。</p>
+                <div class="card-tags">
+                  <span class="tag">Agent能力</span>
+                  <span class="tag">推理能力</span>
+                  <span class="tag">多模态理解</span>
+                </div>
+                <div class="card-footer">
+                  <div class="card-date">更新于 1天前</div>
+                  <a href="https://cloud.tencent.com/product/hunyuan" target="_blank" class="card-link">访问官网</a>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 可以添加更多Agent模型卡片 -->
           </div>
         </div>
       </div>
@@ -525,7 +941,7 @@
     <section id="news" class="news-section">
       <div class="section-title">
         <h2>最新AI资讯</h2>
-        <a href="#news">查看全部 →</a>
+        <a href="news.html">查看全部 →</a>
       </div>
       
       <div class="card">
@@ -599,7 +1015,7 @@
       <h2>新手入门AI领域？</h2>
       <p>不知道从哪里开始？我们精心整理了各类AI模型，包括大型语言模型、图像生成、音乐创作等多种类型，还提供了AI发展的时间线，帮助你快速了解AI领域的最新发展。</p>
       <div>
-        <a href="#models" class="btn">从LLM模型开始了解</a>
+        <a href="models.html" class="btn">从LLM模型开始了解</a>
         <a href="timeline.html" class="btn btn-secondary">查看AI发展时间线</a>
       </div>
     </section>
@@ -616,9 +1032,9 @@
         <div>
           <h4 class="footer-title">导航链接</h4>
           <div class="footer-links">
-            <a href="#">首页</a>
-            <a href="#models">AI模型库</a>
-            <a href="#news">AI资讯</a>
+            <a href="index.html">首页</a>
+            <a href="models.html">AI模型库</a>
+            <a href="news.html">AI资讯</a>
             <a href="timeline.html">AI发展时间线</a>
           </div>
         </div>
@@ -643,18 +1059,41 @@
   <script>
     // 简单的切换逻辑
     document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
+      link.addEventListener('click', function() {
         document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
         this.classList.add('active');
+      });
+    });
+    
+    // 分类按钮切换逻辑
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        // 更新按钮状态
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
         
-        const target = this.getAttribute('href');
-        if(target && target !== '#') {
-          document.querySelector(target).scrollIntoView({
-            behavior: 'smooth'
+        const category = this.getAttribute('data-category');
+        
+        // 显示/隐藏对应分类
+        if (category === 'all') {
+          document.querySelectorAll('.category-section').forEach(section => {
+            section.style.display = 'block';
+          });
+        } else {
+          document.querySelectorAll('.category-section').forEach(section => {
+            if (section.id === category) {
+              section.style.display = 'block';
+            } else {
+              section.style.display = 'none';
+            }
           });
         }
       });
+    });
+    
+    // 初始状态设置
+    document.querySelectorAll('.category-section').forEach(section => {
+      section.style.display = 'block';
     });
   </script>
 </body>

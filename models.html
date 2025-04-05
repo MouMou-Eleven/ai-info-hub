@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI模型库 - AI信息中心</title>
+  <style>
+    :root {
+      --primary: #0ea5e9;
+      --secondary: #8b5cf6;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--gray-900);
+      background-color: #f5f5fa;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    header {
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav li {
+      margin-left: 1.5rem;
+    }
+    
+    nav a {
+      color: var(--gray-700);
+      text-decoration: none;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      transition: background-color 0.2s;
+    }
+    
+    nav a:hover, nav a.active {
+      background-color: var(--gray-100);
+      color: var(--gray-900);
+    }
+    
+    .page-title {
+      padding: 2rem 0;
+      text-align: center;
+    }
+    
+    .page-title h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--gray-800);
+    }
+    
+    .page-title p {
+      font-size: 1.125rem;
+      color: var(--gray-700);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .categories-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .category-btn {
+      border: none;
+      background-color: var(--gray-100);
+      color: var(--gray-700);
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .category-btn:hover {
+      background-color: var(--gray-200);
+    }
+    
+    .category-btn.active {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .search-bar {
+      margin-bottom: 2rem;
+      display: flex;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .search-bar input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 0.375rem 0 0 0.375rem;
+      font-size: 1rem;
+    }
+    
+    .search-bar button {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0 0.375rem 0.375rem 0;
+      cursor: pointer;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-image {
+      height: 160px;
+      background: linear-gradient(to right, #bae6fd, #c4b5fd);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #94a3b8;
+    }
+    
+    .card-content {
+      padding: 1.25rem;
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+    }
+    
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      background-color: #dbeafe;
+      color: #1e40af;
+      border-radius: 9999px;
+    }
+    
+    .card-company {
+      font-size: 0.875rem;
+      color: var(--gray-700);
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--gray-700);
+      margin-bottom: 1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-bottom: 1rem;
+    }
+    
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      background-color: #f3e8ff;
+      color: #6d28d9;
+      border-radius: 9999px;
+    }
+    
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+    }
+    
+    .card-date {
+      color: var(--gray-700);
+    }
+    
+    .card-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+    }
+    
+    .card-link:hover {
+      background-color: #f0f9ff;
+    }
+    
+    .category-section {
+      margin-bottom: 3rem;
+    }
+    
+    .category-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gray-100);
+      color: var(--gray-800);
+    }
+    
+    footer {
+      background-color: white;
+      padding: 2rem 0;
+      border-top: 1px solid var(--gray-200);
+      margin-top: 3rem;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    
+    .footer-content > div {
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-logo {
+      font-size: 1.25rem;
+      font-weight: bold;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-desc {
+      font-size: 0.875rem;
+      color: var(--gray-700);
+      max-width: 300px;
+    }
+    
+    .footer-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .footer-links a {
+      color: var(--gray-700);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--gray-200);
+      font-size: 0.875rem;
+      color: var(--gray-700);
+    }
+    
+    @media (max-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .categories-nav {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 0.75rem;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      nav ul {
+        margin-top: 1rem;
+        justify-content: center;
+      }
+      
+      nav li:first-child {
+        margin-left: 0;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <div class="logo">AI信息中心</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="models.html" class="active">AI模型库</a></li>
+          <li><a href="news.html">AI资讯</a></li>
+          <li><a href="timeline.html">AI发展时间线</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="container">
+    <section class="page-title">
+      <h1>AI模型库</h1>
+      <p>收录了全球领先的AI模型，从大型语言模型到图像生成、视频创作、音频处理等多种类型，满足不同场景需求。</p>
+    </section>
+    
+    <div class="search-bar">
+      <input type="text" id="model-search" placeholder="搜索AI模型（输入模型名称、公司或能力）">
+      <button id="search-btn">搜索</button>
+    </div>
+    
+    <div class="categories-nav">
+      <button class="category-btn active" data-category="all">全部</button>
+      <button class="category-btn" data-category="llm-global">LLM(全球)</button>
+      <button class="category-btn" data-category="llm-china">LLM(中国)</button>
+      <button class="category-btn" data-category="image">图像生成</button>
+      <button class="category-btn" data-category="video">视频生成</button>
+      <button class="category-btn" data-category="audio">音频处理</button>
+      <button class="category-btn" data-category="search">AI搜索</button>
+      <button class="category-btn" data-category="agent">AI助手</button>
+      <button class="category-btn" data-category="3d">3D创作</button>
+      <button class="category-btn" data-category="design">设计工具</button>
+      <button class="category-btn" data-category="voice">语音合成</button>
+      <button class="category-btn" data-category="code">编程助手</button>
+    </div>
+    
+    <!-- LLM全球分类 -->
+    <div class="category-section" id="llm-global">
+      <h2>LLM (全球)</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-image">GPT</div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">GPT-4o</h3>
+              <span class="badge">LLM</span>
+            </div>
+            <div class="card-company">OpenAI</div>
+            <p class="card-desc">GPT-4o是OpenAI最新的多模态大模型，相比GPT-4更快、更便宜、在视觉和推理能力上有显著提升。</p>
+            <div class="card-tags">
+              <span class="tag">文本生成</span>
+              <span class="tag">代码生成</span>
+              <span class="tag">多模态理解</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-date">更新于 3天前</div>
+              <a href="https://openai.com/gpt-4o" target="_blank" class="card-link">访问官网</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image">GEM</div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">Gemini Pro</h3>
+              <span class="badge">LLM</span>
+            </div>
+            <div class="card-company">Google</div>
+            <p class="card-desc">Google的多模态大语言模型，支持文本、图像和代码处理，具有优秀的推理能力和创造性思维。</p>
+            <div class="card-tags">
+              <span class="tag">多模态</span>
+              <span class="tag">代码生成</span>
+              <span class="tag">问答</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-date">更新于 2周前</div>
+              <a href="https://gemini.google.com/" target="_blank" class="card-link">访问官网</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image">CLA</div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">Claude 3 Opus</h3>
+              <span class="badge">LLM</span>
+            </div>
+            <div class="card-company">Anthropic</div>
+            <p class="card-desc">Claude 3系列中性能最强的模型，在复杂推理、专业领域问答和多模态任务方面表现卓越。</p>
+            <div class="card-tags">
+              <span class="tag">文本生成</span>
+              <span class="tag">推理能力</span>
+              <span class="tag">多模态理解</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-date">更新于 1个月前</div>
+              <a href="https://www.anthropic.com/claude" target="_blank" class="card-link">访问官网</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image">MST</div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">Mistral Large</h3>
+              <span class="badge">LLM</span>
+            </div>
+            <div class="card-company">Mistral AI</div>
+            <p class="card-desc">Mistral AI推出的最强大模型，在推理、数学和代码生成上表现优异，模型经过了严格的安全对齐。</p>
+            <div class="card-tags">
+              <span class="tag">文本生成</span>
+              <span class="tag">代码生成</span>
+              <span class="tag">多语言支持</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-date">更新于 3周前</div>
+              <a href="https://mistral.ai/" target="_blank" class="card-link">访问官网</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image">LLA</div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">Llama 3</h3>
+              <span class="badge">LLM</span>
+            </div>
+            <div class="card-company">Meta</div>
+            <p class="card-desc">Meta最新推出的开源大语言模型，提供70B和8B两种参数规模版本，支持多语言，并具有较强的指令遵循能力。</p>
+            <div class="card-tags">
+              <span class="tag">开源</span>
+              <span class="tag">多语言</span>
+              <span class="tag">本地部署</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-date">更新于 1个月前</div>
+              <a href="https://ai.meta.com/llama/" target="_blank" class="card-link">访问官网</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image">GRK</div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">Grok-1.5</h3>
+              <span class="badge">LLM</span>
+            </div>
+            <div class="card-company">xAI</div>
+            <p class="card-desc">由Elon Musk创立的xAI公司推出的大语言模型，具有实时数据访问能力和幽默感，专注于事实准确性。</p>
+            <div class="card-tags">
+              <span class="tag">文本生成</span>
+              <span class="tag">幽默风格</span>
+              <span class="tag">实时数据</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-date">更新于 2个月前</div>
+              <a href="https://www.x.ai/" target="_blank" class="card-link">访问官网</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- LLM中国分类 -->
+    <div class="category-section" id="llm-china">
+      <h2>LLM (中国)</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-image">GLM</div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">Auto-GLM沉思</h3>
+              <span class="badge">LLM</span>
+            </div>
+            <div class="card-company">智谱AI</div>
+            <p class="card-desc">Auto-GLM沉思是智谱AI推出的自主思考大模型，通过"思考力"提升AI的认知水平，减少推理谬误、幻觉等问题。</p>
+            <div class="card-tags">
+              <span class="tag">文本生成</span>
+              <span class="tag">推理能力</span>
+              <span class="tag">知识整合</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-date">更新于 1周前</div>
+              <a href="https://www.zhipuai.cn/product/auto-glm" target="_blank" class="card-link">访问官网</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image">ERN</div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">文心一言</h3>
+              <span class="badge">LLM</span>
+            </div>
+            <div class="card-company">百度</div>
+            <p class="card-desc">百度自研的知识增强大语言模型，拥有海量中文语料和知识库，具备强大的对话、创作和推理能力。</p>
+            <div class="card-tags">
+              <span class="tag">文本生成</span>
+              <span class="tag">知识问答</span>
+              <span class="tag">中文优化</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-date">更新于 2周前</div>
+              <a href="https://yiyan.baidu.com/" target="_blank" class="card-link">访问官网</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image">TYQ</div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">通义千问</h3>
+              <span class="badge">LLM</span>
+            </div>
+            <div class="card-company">阿里巴巴</div>
+            <p class="card-desc">阿里达摩院研发的大语言模型，具备优秀的中文理解和生成能力，可应用于多种业务场景。</p>
+            <div class="card-tags">
+              <span class="tag">文本生成</span>
+              <span class="tag">多模态</span>
+              <span class="tag">内容创作</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-date">更新于 2周前</div>
+              <a href="https://qianwen.aliyun.com/" target="_blank" class="card-link">访问官网</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image">KMI</div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">Kimi</h3>
+              <span class="badge">LLM</span>
+            </div>
+            <div class="card-company">月之暗面</div>
+            <p class="card-desc">Kimi是月之暗面推出的中文大语言模型，具有强大的长文本理解能力，支持复杂推理和数学解题。</p>
+            <div class="card-tags">
+              <span class="tag">文本生成</span>
+              <span class="tag">长文本理解</span>
+              <span class="tag">数学推理</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-date">更新于 1个月前</div>
+              <a href="https://kimi.moonshot.cn/" target="_blank" class="card-link">访问官网</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image">DBG</div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">豆包</h3>
+              <span class="badge">LLM</span>
+            </div>
+            <div class="card-company">字节跳动</div>
+            <p class="card-desc">字节跳动推出的智能助手，在内容创作和信息检索方面表现出色，支持多模态输入和生成。</p>
+            <div class="card-tags">
+              <span class="tag">创意写作</span>
+              <span class="tag">图文理解</span>
+              <span class="tag">内容助手</span>
+            </div>
+            <div class="card-footer">
+              <div class="card-date">更新于 3周前</div>
+              <a href="https://www.doubao.com/" target="_blank" class="card-link">访问官网</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 图像生成分类 -->
+    <div class="category-section" id="image">
+      <h2>图像生成</h2>
+      <div class="grid">
+        <!-- 同上保持一致的卡片样式，内容相应修改 -->
+      </div>
+    </div>
+    
+    <!-- 视频生成分类 -->
+    <div class="category-section" id="video">
+      <h2>视频生成</h2>
+      <div class="grid">
+        <!-- 同上保持一致的卡片样式，内容相应修改 -->
+      </div>
+    </div>
+    
+    <!-- AI搜索分类 -->
+    <div class="category-section" id="search">
+      <h2>AI搜索</h2>
+      <div class="grid">
+        <!-- 同上保持一致的卡片样式，内容相应修改 -->
+      </div>
+    </div>
+    
+    <!-- 更多分类... -->
+  </main>
+  
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <div class="footer-logo">AI信息中心</div>
+          <p class="footer-desc">提供最新AI资讯与全面的AI模型信息</p>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">导航链接</h4>
+          <div class="footer-links">
+            <a href="index.html">首页</a>
+            <a href="models.html">AI模型库</a>
+            <a href="news.html">AI资讯</a>
+            <a href="timeline.html">AI发展时间线</a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">分享与关注</h4>
+          <div class="social-links">
+            <a href="#" class="social-link">微信</a>
+            <a href="#" class="social-link">微博</a>
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">Github</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 AI信息中心. 保留所有权利.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 分类按钮切换逻辑
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        // 更新按钮状态
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const category = this.getAttribute('data-category');
+        
+        // 显示/隐藏对应分类
+        if (category === 'all') {
+          document.querySelectorAll('.category-section').forEach(section => {
+            section.style.display = 'block';
+          });
+        } else {
+          document.querySelectorAll('.category-section').forEach(section => {
+            if (section.id === category) {
+              section.style.display = 'block';
+            } else {
+              section.style.display = 'none';
+            }
+          });
+        }
+      });
+    });
+    
+    // 搜索功能
+    document.getElementById('search-btn').addEventListener('click', function() {
+      const searchTerm = document.getElementById('model-search').value.toLowerCase();
+      if (!searchTerm) {
+        // 如果搜索框为空，显示所有卡片
+        document.querySelectorAll('.card').forEach(card => {
+          card.style.display = 'block';
+        });
+        return;
+      }
+      
+      // 搜索逻辑
+      document.querySelectorAll('.card').forEach(card => {
+        const title = card.querySelector('.card-title').textContent.toLowerCase();
+        const company = card.querySelector('.card-company').textContent.toLowerCase();
+        const desc = card.querySelector('.card-desc').textContent.toLowerCase();
+        const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+        
+        // 如果在标题、公司、描述或标签中找到搜索词，显示这个卡片
+        if (title.includes(searchTerm) || 
+            company.includes(searchTerm) || 
+            desc.includes(searchTerm) || 
+            tags.some(tag => tag.includes(searchTerm))) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+    
+    // 按下回车键也触发搜索
+    document.getElementById('model-search').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        document.getElementById('search-btn').click();
+      }
+    });
+  </script>
+</body>
+</html> 

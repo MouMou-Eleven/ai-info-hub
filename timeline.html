@@ -77,107 +77,189 @@
       color: var(--gray-900);
     }
     
-    main {
-      padding: 2rem 0;
-    }
-    
     .page-title {
+      padding: 2rem 0;
       text-align: center;
-      margin-bottom: 3rem;
     }
     
     .page-title h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
+      color: var(--gray-800);
     }
     
     .page-title p {
-      font-size: 1.2rem;
+      font-size: 1.125rem;
       color: var(--gray-700);
       max-width: 800px;
       margin: 0 auto;
     }
     
-    /* 时间线样式 */
-    .timeline {
-      position: relative;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 0;
+    .timeline-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
     
-    .timeline::after {
+    .timeline-filter-btn {
+      border: none;
+      background-color: var(--gray-100);
+      color: var(--gray-700);
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .timeline-filter-btn:hover {
+      background-color: var(--gray-200);
+    }
+    
+    .timeline-filter-btn.active {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .timeline {
+      position: relative;
+      margin: 2rem 0 4rem;
+    }
+    
+    .timeline::before {
       content: '';
       position: absolute;
-      width: 6px;
-      background: linear-gradient(to bottom, var(--primary), var(--secondary));
-      top: 0;
-      bottom: 0;
       left: 50%;
-      margin-left: -3px;
-      border-radius: 3px;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      border-radius: 2px;
     }
     
     .timeline-item {
-      padding: 10px 40px;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 3rem;
       position: relative;
-      width: 50%;
-      box-sizing: border-box;
     }
     
-    .timeline-item:nth-child(odd) {
-      left: 0;
-    }
-    
-    .timeline-item:nth-child(even) {
-      left: 50%;
-    }
-    
-    .timeline-item::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      right: -10px;
-      top: 15px;
-      border-radius: 50%;
-      background: white;
-      border: 4px solid var(--primary);
-      z-index: 1;
-    }
-    
-    .timeline-item:nth-child(even)::after {
-      left: -10px;
+    .timeline-item:last-child {
+      padding-bottom: 0;
     }
     
     .timeline-content {
-      padding: 20px 25px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 45%;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
     }
     
     .timeline-date {
-      font-weight: bold;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      border-radius: 0.25rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
     }
     
     .timeline-title {
       font-size: 1.25rem;
       margin-bottom: 0.75rem;
+      color: var(--gray-900);
     }
     
     .timeline-desc {
       font-size: 0.875rem;
       color: var(--gray-700);
+      margin-bottom: 1rem;
     }
     
     .timeline-image {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-      margin-top: 1rem;
+      height: 200px;
+      background: linear-gradient(to right, #dbeafe, #e0e7ff);
+      border-radius: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    
+    .timeline-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      width: 25px;
+      height: 25px;
+      background-color: white;
+      border: 4px solid var(--primary);
+      border-radius: 50%;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::before {
+      right: -42px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content::before {
+      left: -42px;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::after {
+      content: '';
+      position: absolute;
+      top: 24px;
+      right: -15px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 15px solid white;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content::after {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: -15px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 15px solid white;
+    }
+    
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .timeline-tag {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      background-color: #f3e8ff;
+      color: #6d28d9;
+      border-radius: 9999px;
     }
     
     footer {
@@ -245,31 +327,30 @@
     }
     
     @media (max-width: 768px) {
-      .timeline::after {
-        left: 31px;
+      .timeline::before {
+        left: 30px;
       }
       
       .timeline-item {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
+        flex-direction: row-reverse;
+        justify-content: flex-start;
       }
       
-      .timeline-item:nth-child(even) {
-        left: 0;
+      .timeline-content {
+        width: calc(100% - 70px);
+        margin-left: 70px;
       }
       
-      .timeline-item::after {
-        left: 21px;
+      .timeline-item:nth-child(odd) .timeline-content::before,
+      .timeline-item:nth-child(even) .timeline-content::before {
+        left: -42px;
+      }
+      
+      .timeline-item:nth-child(odd) .timeline-content::after {
+        left: -15px;
         right: auto;
-      }
-      
-      .timeline-item:nth-child(even)::after {
-        left: 21px;
-      }
-      
-      .footer-content {
-        flex-direction: column;
+        border-right: 15px solid white;
+        border-left: none;
       }
       
       .header-content {
@@ -295,8 +376,8 @@
       <nav>
         <ul>
           <li><a href="index.html">首页</a></li>
-          <li><a href="index.html#models">AI模型库</a></li>
-          <li><a href="index.html#news">AI资讯</a></li>
+          <li><a href="models.html">AI模型库</a></li>
+          <li><a href="news.html">AI资讯</a></li>
           <li><a href="timeline.html" class="active">AI发展时间线</a></li>
         </ul>
       </nav>
@@ -305,146 +386,242 @@
   
   <main class="container">
     <section class="page-title">
-      <h1>AI发展时间线</h1>
-      <p>探索人工智能从诞生到现在的关键里程碑和重大突破</p>
+      <h1>AI发展关键时间线</h1>
+      <p>追溯人工智能从概念萌芽到技术突破的重要历史节点，了解AI如何演变至今，展望其未来发展方向。</p>
     </section>
     
-    <section class="timeline">
-      <!-- 1950年代 -->
-      <div class="timeline-item">
+    <div class="timeline-filter">
+      <button class="timeline-filter-btn active" data-period="all">全部</button>
+      <button class="timeline-filter-btn" data-period="early">早期历史(1950-1990)</button>
+      <button class="timeline-filter-btn" data-period="middle">发展期(1990-2010)</button>
+      <button class="timeline-filter-btn" data-period="modern">现代AI(2010-至今)</button>
+    </div>
+    
+    <div class="timeline">
+      <!-- 时间线项目1 -->
+      <div class="timeline-item" data-period="early">
         <div class="timeline-content">
-          <div class="timeline-date">1950年</div>
-          <h3 class="timeline-title">图灵测试提出</h3>
-          <p class="timeline-desc">艾伦·图灵在论文《计算机器与智能》中提出了著名的图灵测试，这成为判断机器是否具有智能的经典标准。</p>
+          <span class="timeline-date">1950年</span>
+          <h3 class="timeline-title">图灵测试</h3>
+          <div class="timeline-desc">
+            <p>艾伦·图灵在《计算机器与智能》论文中提出"图灵测试"，这是AI发展史上的重要里程碑。测试旨在判断机器是否具有与人类相当的智能，通过让测试者区分人类与机器的对话来实现。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">图灵</span>
+            <span class="timeline-tag">智能检测</span>
+            <span class="timeline-tag">里程碑</span>
+          </div>
         </div>
       </div>
       
-      <div class="timeline-item">
+      <!-- 时间线项目2 -->
+      <div class="timeline-item" data-period="early">
         <div class="timeline-content">
-          <div class="timeline-date">1956年</div>
-          <h3 class="timeline-title">"人工智能"术语诞生</h3>
-          <p class="timeline-desc">在达特茅斯会议上，约翰·麦卡锡首次提出"人工智能"（Artificial Intelligence）这一术语，标志着AI作为一门学科的正式诞生。</p>
+          <span class="timeline-date">1956年</span>
+          <h3 class="timeline-title">达特茅斯会议与"人工智能"诞生</h3>
+          <div class="timeline-desc">
+            <p>在达特茅斯学院举行的会议上，约翰·麦卡锡首次提出"人工智能"（Artificial Intelligence）术语。会议汇集了包括马文·明斯基和克劳德·香农在内的计算机科学先驱，被视为AI研究领域的正式成立。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">术语起源</span>
+            <span class="timeline-tag">麦卡锡</span>
+            <span class="timeline-tag">学术会议</span>
+          </div>
         </div>
       </div>
       
-      <!-- 1960年代 -->
-      <div class="timeline-item">
+      <!-- 时间线项目3 -->
+      <div class="timeline-item" data-period="early">
         <div class="timeline-content">
-          <div class="timeline-date">1966年</div>
-          <h3 class="timeline-title">ELIZA问世</h3>
-          <p class="timeline-desc">约瑟夫·韦森鲍姆开发了第一个聊天机器人ELIZA，它能够模拟人类对话，是早期自然语言处理的重要尝试。</p>
+          <span class="timeline-date">1966年</span>
+          <h3 class="timeline-title">首个聊天机器人ELIZA</h3>
+          <div class="timeline-desc">
+            <p>约瑟夫·维森鲍姆在麻省理工学院创建ELIZA，这是历史上第一个自然语言处理聊天机器人。ELIZA能模拟与人对话，特别是模仿"罗杰式心理治疗"方法，成为后来聊天机器人发展的基础。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">聊天机器人</span>
+            <span class="timeline-tag">自然语言处理</span>
+            <span class="timeline-tag">MIT</span>
+          </div>
         </div>
       </div>
       
-      <!-- 1970-1980年代 -->
-      <div class="timeline-item">
+      <!-- 时间线项目4 -->
+      <div class="timeline-item" data-period="early">
         <div class="timeline-content">
-          <div class="timeline-date">1980年代</div>
-          <h3 class="timeline-title">AI寒冬</h3>
-          <p class="timeline-desc">由于AI研究未能达到预期目标，加上计算资源限制，AI领域经历了长期的资金和兴趣减少的"寒冬"时期。</p>
+          <span class="timeline-date">1970-1980年代</span>
+          <h3 class="timeline-title">AI首次寒冬</h3>
+          <div class="timeline-desc">
+            <p>由于AI研究未能达到过高的期望，加上技术与硬件限制，AI领域经历了第一次"寒冬"期。研究资金锐减，许多项目被放弃，公众与学界对AI的热情大幅降低。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">寒冬期</span>
+            <span class="timeline-tag">研究挫折</span>
+            <span class="timeline-tag">资金削减</span>
+          </div>
         </div>
       </div>
       
-      <!-- 1990年代 -->
-      <div class="timeline-item">
+      <!-- 时间线项目5 -->
+      <div class="timeline-item" data-period="middle">
         <div class="timeline-content">
-          <div class="timeline-date">1997年</div>
-          <h3 class="timeline-title">深蓝战胜世界棋王</h3>
-          <p class="timeline-desc">IBM的深蓝超级计算机击败了世界国际象棋冠军加里·卡斯帕罗夫，成为AI发展史上的里程碑事件。</p>
+          <span class="timeline-date">1997年</span>
+          <h3 class="timeline-title">深蓝战胜国际象棋世界冠军</h3>
+          <div class="timeline-desc">
+            <p>IBM的"深蓝"超级计算机战胜了国际象棋世界冠军加里·卡斯帕罗夫，这是计算机首次在如此高水平的智力游戏中击败人类冠军，引起全球轰动，标志着特定领域AI取得重大突破。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">IBM</span>
+            <span class="timeline-tag">深蓝</span>
+            <span class="timeline-tag">卡斯帕罗夫</span>
+          </div>
         </div>
       </div>
       
-      <!-- 2000年代 -->
-      <div class="timeline-item">
+      <!-- 时间线项目6 -->
+      <div class="timeline-item" data-period="middle">
         <div class="timeline-content">
-          <div class="timeline-date">2006年</div>
-          <h3 class="timeline-title">深度学习兴起</h3>
-          <p class="timeline-desc">杰弗里·辛顿提出深度学习概念并取得突破，为神经网络的复兴铺平了道路。</p>
+          <span class="timeline-date">2006年</span>
+          <h3 class="timeline-title">深度学习研究兴起</h3>
+          <div class="timeline-desc">
+            <p>杰弗里·欣顿和他的团队重新引起了对深度学习的关注，发表了关于深度信念网络的开创性论文。该论文展示了如何有效训练深层神经网络，为后来的AI革命奠定了技术基础。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">深度学习</span>
+            <span class="timeline-tag">欣顿</span>
+            <span class="timeline-tag">神经网络</span>
+          </div>
         </div>
       </div>
       
-      <!-- 2010年代 -->
-      <div class="timeline-item">
+      <!-- 时间线项目7 -->
+      <div class="timeline-item" data-period="modern">
         <div class="timeline-content">
-          <div class="timeline-date">2011年</div>
-          <h3 class="timeline-title">IBM Watson赢得智力竞赛</h3>
-          <p class="timeline-desc">IBM的Watson系统在美国电视智力竞赛节目"Jeopardy!"中战胜人类冠军，展示了AI在自然语言理解方面的能力。</p>
+          <span class="timeline-date">2011年</span>
+          <h3 class="timeline-title">IBM Watson击败人类选手</h3>
+          <div class="timeline-desc">
+            <p>IBM的问答系统Watson在美国知识竞赛节目《Jeopardy!》中战胜了两位最强人类冠军。Watson展示了AI在理解自然语言、推理和快速检索领域的强大能力，引发了商业AI应用的热潮。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">IBM</span>
+            <span class="timeline-tag">Watson</span>
+            <span class="timeline-tag">自然语言理解</span>
+          </div>
         </div>
       </div>
       
-      <div class="timeline-item">
+      <!-- 时间线项目8 -->
+      <div class="timeline-item" data-period="modern">
         <div class="timeline-content">
-          <div class="timeline-date">2012年</div>
-          <h3 class="timeline-title">AlexNet图像识别突破</h3>
-          <p class="timeline-desc">深度卷积神经网络AlexNet在ImageNet竞赛中大幅超越传统方法，掀起了深度学习在计算机视觉领域的革命。</p>
+          <span class="timeline-date">2012年</span>
+          <h3 class="timeline-title">ImageNet比赛与AlexNet</h3>
+          <div class="timeline-desc">
+            <p>AlexNet卷积神经网络在ImageNet视觉识别挑战赛中以显著优势获胜，错误率比第二名降低了超过10%。这一成就被视为深度学习革命的开始，随后几年计算机视觉领域取得了爆炸性进展。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">CNN</span>
+            <span class="timeline-tag">计算机视觉</span>
+            <span class="timeline-tag">AlexNet</span>
+          </div>
         </div>
       </div>
       
-      <div class="timeline-item">
+      <!-- 时间线项目9 -->
+      <div class="timeline-item" data-period="modern">
         <div class="timeline-content">
-          <div class="timeline-date">2014年</div>
-          <h3 class="timeline-title">GAN模型提出</h3>
-          <p class="timeline-desc">伊恩·古德费洛提出了生成对抗网络(GAN)，这一创新架构为生成式AI模型的发展奠定了基础。</p>
+          <span class="timeline-date">2016年</span>
+          <h3 class="timeline-title">AlphaGo战胜世界围棋冠军</h3>
+          <div class="timeline-desc">
+            <p>谷歌DeepMind开发的AlphaGo以4:1的比分击败世界围棋冠军李世石。围棋被认为是比国际象棋复杂得多的游戏，这一胜利展示了深度强化学习的强大能力，也引发了全球范围内对AI发展的重新评估。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">DeepMind</span>
+            <span class="timeline-tag">AlphaGo</span>
+            <span class="timeline-tag">强化学习</span>
+          </div>
         </div>
       </div>
       
-      <div class="timeline-item">
+      <!-- 时间线项目10 -->
+      <div class="timeline-item" data-period="modern">
         <div class="timeline-content">
-          <div class="timeline-date">2016年</div>
-          <h3 class="timeline-title">AlphaGo击败人类围棋大师</h3>
-          <p class="timeline-desc">谷歌DeepMind的AlphaGo在围棋比赛中击败了世界冠军李世石，这在AI历史上是一个重大突破，因为围棋一直被认为是AI难以攻克的领域。</p>
+          <span class="timeline-date">2017年</span>
+          <h3 class="timeline-title">变换器(Transformer)模型发布</h3>
+          <div class="timeline-desc">
+            <p>谷歌研究团队发表论文《Attention Is All You Need》，提出了Transformer架构。这一创新彻底改变了自然语言处理领域，为后来的BERT、GPT系列等大型语言模型奠定了基础。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Transformer</span>
+            <span class="timeline-tag">注意力机制</span>
+            <span class="timeline-tag">NLP</span>
+          </div>
         </div>
       </div>
       
-      <div class="timeline-item">
+      <!-- 时间线项目11 -->
+      <div class="timeline-item" data-period="modern">
         <div class="timeline-content">
-          <div class="timeline-date">2017年</div>
-          <h3 class="timeline-title">Transformer架构发布</h3>
-          <p class="timeline-desc">谷歌发表论文《Attention Is All You Need》，提出了Transformer架构，这一突破为后来的BERT、GPT等大型语言模型奠定了基础。</p>
-        </div>
-      </div>
-      
-      <!-- 2020年代 -->
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <div class="timeline-date">2020年</div>
+          <span class="timeline-date">2020年</span>
           <h3 class="timeline-title">GPT-3发布</h3>
-          <p class="timeline-desc">OpenAI发布了当时参数量最大的语言模型GPT-3，拥有1750亿参数，展示了惊人的语言生成和理解能力。</p>
+          <div class="timeline-desc">
+            <p>OpenAI发布具有1750亿参数的GPT-3模型，其在文本生成、问答、翻译等任务上表现出惊人的能力，即使在少样本或零样本学习情况下也表现优异。GPT-3掀起了大型语言模型应用的热潮，并引发了对AI安全与伦理的讨论。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">OpenAI</span>
+            <span class="timeline-tag">GPT-3</span>
+            <span class="timeline-tag">大型语言模型</span>
+          </div>
         </div>
       </div>
       
-      <div class="timeline-item">
+      <!-- 时间线项目12 -->
+      <div class="timeline-item" data-period="modern">
         <div class="timeline-content">
-          <div class="timeline-date">2021年</div>
-          <h3 class="timeline-title">DALL-E图像生成</h3>
-          <p class="timeline-desc">OpenAI发布DALL-E，这是一个能根据文本描述生成高质量图像的AI系统，展示了AI在创意领域的潜力。</p>
+          <span class="timeline-date">2022年</span>
+          <h3 class="timeline-title">ChatGPT和DALL-E 2引爆AI创作革命</h3>
+          <div class="timeline-desc">
+            <p>OpenAI发布ChatGPT聊天机器人和DALL-E 2图像生成模型，将大型AI模型带入主流应用。这些模型的普及使得AI创作工具走入公众视野，为各行各业带来了巨大变革，也引发了新一轮关于AI生成内容的版权、伦理等讨论。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">ChatGPT</span>
+            <span class="timeline-tag">DALL-E</span>
+            <span class="timeline-tag">AI创作</span>
+          </div>
         </div>
       </div>
       
-      <div class="timeline-item">
+      <!-- 时间线项目13 -->
+      <div class="timeline-item" data-period="modern">
         <div class="timeline-content">
-          <div class="timeline-date">2022年</div>
-          <h3 class="timeline-title">ChatGPT引发AI热潮</h3>
-          <p class="timeline-desc">OpenAI推出ChatGPT，这一对话式AI助手迅速走红，首周用户突破100万，引发了全球范围内的生成式AI热潮。</p>
+          <span class="timeline-date">2023年</span>
+          <h3 class="timeline-title">多模态大模型爆发</h3>
+          <div class="timeline-desc">
+            <p>GPT-4、Claude等具备多模态能力的大模型相继发布，能够同时处理文本、图像等多种形式的输入，并进行推理与生成。各大科技公司和创业公司纷纷推出自己的大型语言模型，AI行业迎来空前繁荣。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">多模态</span>
+            <span class="timeline-tag">GPT-4</span>
+            <span class="timeline-tag">大模型爆发</span>
+          </div>
         </div>
       </div>
       
-      <div class="timeline-item">
+      <!-- 时间线项目14 -->
+      <div class="timeline-item" data-period="modern">
         <div class="timeline-content">
-          <div class="timeline-date">2023年</div>
-          <h3 class="timeline-title">GPT-4多模态能力</h3>
-          <p class="timeline-desc">OpenAI发布GPT-4，具备图像理解能力，同时在复杂推理和专业知识领域表现出显著优势。中国国内百度文心一言、阿里通义千问等大模型相继发布。</p>
+          <span class="timeline-date">2024年</span>
+          <h3 class="timeline-title">Sora和GPT-4o引领视频生成与多模态交互新时代</h3>
+          <div class="timeline-desc">
+            <p>OpenAI发布Sora视频生成模型，能够根据文本提示创建高质量、长达一分钟的视频，展示了惊人的时空一致性和物理理解能力。同时，GPT-4o的发布将多模态交互能力推向新高度，具备即时语音响应和更自然的人机交互体验。</p>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Sora</span>
+            <span class="timeline-tag">GPT-4o</span>
+            <span class="timeline-tag">视频生成</span>
+          </div>
         </div>
       </div>
-      
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <div class="timeline-date">2024年</div>
-          <h3 class="timeline-title">GPT-4o与Sora</h3>
-          <p class="timeline-desc">OpenAI推出更强大的多模态模型GPT-4o以及文本生成视频模型Sora，AI多模态能力大幅提升，开始进入实时响应与理解的新阶段。</p>
-        </div>
-      </div>
-    </section>
+    </div>
   </main>
   
   <footer>
@@ -459,19 +636,16 @@
           <h4 class="footer-title">导航链接</h4>
           <div class="footer-links">
             <a href="index.html">首页</a>
-            <a href="index.html#models">AI模型库</a>
-            <a href="index.html#news">AI资讯</a>
+            <a href="models.html">AI模型库</a>
+            <a href="news.html">AI资讯</a>
             <a href="timeline.html">AI发展时间线</a>
           </div>
         </div>
         
         <div>
-          <h4 class="footer-title">分享与关注</h4>
-          <div class="social-links">
-            <a href="#" class="social-link">微信</a>
-            <a href="#" class="social-link">微博</a>
-            <a href="#" class="social-link">Twitter</a>
-            <a href="#" class="social-link">Github</a>
+          <h4 class="footer-title">联系我们</h4>
+          <div class="footer-links">
+            <a href="mailto:yangjianwei12131@163.com">电子邮件</a>
           </div>
         </div>
       </div>
@@ -481,5 +655,33 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // 时间线过滤器功能
+    document.querySelectorAll('.timeline-filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        // 更新按钮状态
+        document.querySelectorAll('.timeline-filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const period = this.getAttribute('data-period');
+        
+        // 显示/隐藏对应时期的事件
+        if (period === 'all') {
+          document.querySelectorAll('.timeline-item').forEach(item => {
+            item.style.display = 'flex';
+          });
+        } else {
+          document.querySelectorAll('.timeline-item').forEach(item => {
+            if (item.getAttribute('data-period') === period) {
+              item.style.display = 'flex';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html> 
