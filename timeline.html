@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI发展时间线 - AI信息中心</title>
+  <style>
+    :root {
+      --primary: #0ea5e9;
+      --secondary: #8b5cf6;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--gray-900);
+      background-color: #f5f5fa;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    header {
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav li {
+      margin-left: 1.5rem;
+    }
+    
+    nav a {
+      color: var(--gray-700);
+      text-decoration: none;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      transition: background-color 0.2s;
+    }
+    
+    nav a:hover, nav a.active {
+      background-color: var(--gray-100);
+      color: var(--gray-900);
+    }
+    
+    main {
+      padding: 2rem 0;
+    }
+    
+    .page-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .page-title h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .page-title p {
+      font-size: 1.2rem;
+      color: var(--gray-700);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* 时间线样式 */
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+    
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+      border-radius: 3px;
+    }
+    
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+    
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+    
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+    
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      right: -10px;
+      top: 15px;
+      border-radius: 50%;
+      background: white;
+      border: 4px solid var(--primary);
+      z-index: 1;
+    }
+    
+    .timeline-item:nth-child(even)::after {
+      left: -10px;
+    }
+    
+    .timeline-content {
+      padding: 20px 25px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .timeline-date {
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .timeline-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .timeline-desc {
+      font-size: 0.875rem;
+      color: var(--gray-700);
+    }
+    
+    .timeline-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-top: 1rem;
+    }
+    
+    footer {
+      background-color: white;
+      padding: 2rem 0;
+      border-top: 1px solid var(--gray-200);
+      margin-top: 3rem;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    
+    .footer-content > div {
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-logo {
+      font-size: 1.25rem;
+      font-weight: bold;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-desc {
+      font-size: 0.875rem;
+      color: var(--gray-700);
+      max-width: 300px;
+    }
+    
+    .footer-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .footer-links a {
+      color: var(--gray-700);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--gray-200);
+      font-size: 0.875rem;
+      color: var(--gray-700);
+    }
+    
+    @media (max-width: 768px) {
+      .timeline::after {
+        left: 31px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+      
+      .timeline-item::after {
+        left: 21px;
+        right: auto;
+      }
+      
+      .timeline-item:nth-child(even)::after {
+        left: 21px;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      nav ul {
+        margin-top: 1rem;
+        justify-content: center;
+      }
+      
+      nav li:first-child {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <div class="logo">AI信息中心</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="index.html#models">AI模型库</a></li>
+          <li><a href="index.html#news">AI资讯</a></li>
+          <li><a href="timeline.html" class="active">AI发展时间线</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="container">
+    <section class="page-title">
+      <h1>AI发展时间线</h1>
+      <p>探索人工智能从诞生到现在的关键里程碑和重大突破</p>
+    </section>
+    
+    <section class="timeline">
+      <!-- 1950年代 -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">1950年</div>
+          <h3 class="timeline-title">图灵测试提出</h3>
+          <p class="timeline-desc">艾伦·图灵在论文《计算机器与智能》中提出了著名的图灵测试，这成为判断机器是否具有智能的经典标准。</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">1956年</div>
+          <h3 class="timeline-title">"人工智能"术语诞生</h3>
+          <p class="timeline-desc">在达特茅斯会议上，约翰·麦卡锡首次提出"人工智能"（Artificial Intelligence）这一术语，标志着AI作为一门学科的正式诞生。</p>
+        </div>
+      </div>
+      
+      <!-- 1960年代 -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">1966年</div>
+          <h3 class="timeline-title">ELIZA问世</h3>
+          <p class="timeline-desc">约瑟夫·韦森鲍姆开发了第一个聊天机器人ELIZA，它能够模拟人类对话，是早期自然语言处理的重要尝试。</p>
+        </div>
+      </div>
+      
+      <!-- 1970-1980年代 -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">1980年代</div>
+          <h3 class="timeline-title">AI寒冬</h3>
+          <p class="timeline-desc">由于AI研究未能达到预期目标，加上计算资源限制，AI领域经历了长期的资金和兴趣减少的"寒冬"时期。</p>
+        </div>
+      </div>
+      
+      <!-- 1990年代 -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">1997年</div>
+          <h3 class="timeline-title">深蓝战胜世界棋王</h3>
+          <p class="timeline-desc">IBM的深蓝超级计算机击败了世界国际象棋冠军加里·卡斯帕罗夫，成为AI发展史上的里程碑事件。</p>
+        </div>
+      </div>
+      
+      <!-- 2000年代 -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2006年</div>
+          <h3 class="timeline-title">深度学习兴起</h3>
+          <p class="timeline-desc">杰弗里·辛顿提出深度学习概念并取得突破，为神经网络的复兴铺平了道路。</p>
+        </div>
+      </div>
+      
+      <!-- 2010年代 -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2011年</div>
+          <h3 class="timeline-title">IBM Watson赢得智力竞赛</h3>
+          <p class="timeline-desc">IBM的Watson系统在美国电视智力竞赛节目"Jeopardy!"中战胜人类冠军，展示了AI在自然语言理解方面的能力。</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2012年</div>
+          <h3 class="timeline-title">AlexNet图像识别突破</h3>
+          <p class="timeline-desc">深度卷积神经网络AlexNet在ImageNet竞赛中大幅超越传统方法，掀起了深度学习在计算机视觉领域的革命。</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2014年</div>
+          <h3 class="timeline-title">GAN模型提出</h3>
+          <p class="timeline-desc">伊恩·古德费洛提出了生成对抗网络(GAN)，这一创新架构为生成式AI模型的发展奠定了基础。</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2016年</div>
+          <h3 class="timeline-title">AlphaGo击败人类围棋大师</h3>
+          <p class="timeline-desc">谷歌DeepMind的AlphaGo在围棋比赛中击败了世界冠军李世石，这在AI历史上是一个重大突破，因为围棋一直被认为是AI难以攻克的领域。</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2017年</div>
+          <h3 class="timeline-title">Transformer架构发布</h3>
+          <p class="timeline-desc">谷歌发表论文《Attention Is All You Need》，提出了Transformer架构，这一突破为后来的BERT、GPT等大型语言模型奠定了基础。</p>
+        </div>
+      </div>
+      
+      <!-- 2020年代 -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2020年</div>
+          <h3 class="timeline-title">GPT-3发布</h3>
+          <p class="timeline-desc">OpenAI发布了当时参数量最大的语言模型GPT-3，拥有1750亿参数，展示了惊人的语言生成和理解能力。</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2021年</div>
+          <h3 class="timeline-title">DALL-E图像生成</h3>
+          <p class="timeline-desc">OpenAI发布DALL-E，这是一个能根据文本描述生成高质量图像的AI系统，展示了AI在创意领域的潜力。</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2022年</div>
+          <h3 class="timeline-title">ChatGPT引发AI热潮</h3>
+          <p class="timeline-desc">OpenAI推出ChatGPT，这一对话式AI助手迅速走红，首周用户突破100万，引发了全球范围内的生成式AI热潮。</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2023年</div>
+          <h3 class="timeline-title">GPT-4多模态能力</h3>
+          <p class="timeline-desc">OpenAI发布GPT-4，具备图像理解能力，同时在复杂推理和专业知识领域表现出显著优势。中国国内百度文心一言、阿里通义千问等大模型相继发布。</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2024年</div>
+          <h3 class="timeline-title">GPT-4o与Sora</h3>
+          <p class="timeline-desc">OpenAI推出更强大的多模态模型GPT-4o以及文本生成视频模型Sora，AI多模态能力大幅提升，开始进入实时响应与理解的新阶段。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <div class="footer-logo">AI信息中心</div>
+          <p class="footer-desc">提供最新AI资讯与全面的AI模型信息</p>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">导航链接</h4>
+          <div class="footer-links">
+            <a href="index.html">首页</a>
+            <a href="index.html#models">AI模型库</a>
+            <a href="index.html#news">AI资讯</a>
+            <a href="timeline.html">AI发展时间线</a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">分享与关注</h4>
+          <div class="social-links">
+            <a href="#" class="social-link">微信</a>
+            <a href="#" class="social-link">微博</a>
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">Github</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 AI信息中心. 保留所有权利.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html> 
